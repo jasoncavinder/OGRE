@@ -6,10 +6,15 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		8C5285651C66A0DA0013ABF4 /* OGRE.pages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OGRE.pages; path = "../../Library/Mobile Documents/com~apple~Pages/Documents/OGRE.pages"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		8C52855E1C66A03A0013ABF4 = {
 			isa = PBXGroup;
 			children = (
+				8C5285651C66A0DA0013ABF4 /* OGRE.pages */,
 			);
 			sourceTree = "<group>";
 		};
