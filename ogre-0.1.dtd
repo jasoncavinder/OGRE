@@ -1,0 +1,156 @@
+<!-- Open Gaming Regulae Editicia (OGRE) File Types
+        OGB (Open Gaming - Base System)     - Describes the core rules of a game
+        OGC (Open Gaming - Character)       - Stores data for a single caracter
+        OGD (Open Gaming - Display Sheet)   - Describes the display (character sheet)
+        OGE (Open Gaming - Expanded System) - Describes additional data for a base system
+        OG(P|Z) (Open Gaming - Package/Zip) - Combines OGB (0-1), OGC (0+), OGD (0+), OGE (0+)
+-->
+
+
+<!-- xml file must contain at least one of the following, which should match the file's extension -->
+<!ENTITY % is-base-system      "IGNORE"> <!-- .ogb files MUST "INCLUDE" this -->
+<!ENTITY % is-character        "IGNORE"> <!-- .ogc files MUST "INCLUDE" this -->
+<!ENTITY % is-display-sheet    "IGNORE"> <!-- .ogd files MUST "INCLUDE" this -->
+<!ENTITY % is-expansion        "IGNORE"> <!-- .oge files MUST "INCLUDE" this -->
+<!ENTITY % is-package          "IGNORE"> <!-- .ogp files MUST "INCLUDE" this -->
+
+
+<!-- ensure only ONE of the above is set -->
+<![%is-package;[
+    <![%is-base-system;[ <!ENTITY % invalid "INCLUDE"> ]]>
+    <![%is-character;[ <!ENTITY % invalid "INCLUDE"> ]]>
+    <![%is-display-sheet;[ <!ENTITY % invalid "INCLUDE"> ]]>
+    <![%is-expansion;[ <!ENTITY % invalid "INCLUDE"> ]]>
+]]>
+<![%is-base-system;[
+    <![%is-character;[ <!ENTITY % invalid "INCLUDE"> ]]>
+    <![%is-display-sheet;[ <!ENTITY % invalid "INCLUDE"> ]]>
+    <![%is-expansion;[ <!ENTITY % invalid "INCLUDE"> ]]>
+]]>
+<![%is-character;[
+    <![%is-display-sheet;[ <!ENTITY % invalid "INCLUDE"> ]]>
+    <![%is-expansion;[ <!ENTITY % invalid "INCLUDE"> ]]>
+]]>
+<![%is-display-sheet;[
+    <![%is-expansion;[ <!ENTITY % invalid "INCLUDE"> ]]>
+]]>
+
+
+<!-- if duplicates are detected, ruin root element -->
+<!ENTITY % invalid "IGNORE">
+<![%invalid;[
+    <!ENTITY % ogre-doc.child-list "EMPTY">
+]]>
+
+
+<!-- setup includes -->
+<![%is-package;[
+    <!ENTITY % include-b "INCLUDE">
+    <!ENTITY % include-c "INCLUDE">
+    <!ENTITY % include-d "INCLUDE">
+    <!ENTITY % include-e "INCLUDE">
+    <!ENTITY % include-be "INCLUDE">
+    <!ENTITY % ogre-doc.child-list "(base-system|character|display-sheet|expansion)+">
+]]>
+<![%is-base-system;[
+    <!ENTITY % include-b "INCLUDE">
+    <!ENTITY % include-be "INCLUDE">
+    <!ENTITY % include-d "INCLUDE">
+    <!ENTITY % ogre-doc.child-list "(base-system,display-sheet*)">
+]]>
+<![%is-character;[
+    <!ENTITY % include-c "INCLUDE">
+    <!ENTITY % include-d "INCLUDE">
+    <!ENTITY % ogre-doc.child-list "(character,display-sheet*)">
+]]>
+<![%is-display-sheet;[
+    <!ENTITY % include-d "INCLUDE">
+    <!ENTITY % ogre-doc.child-list "(display-sheet)">
+]]>
+<![%is-expansion;[
+    <!ENTITY % include-e "INCLUDE">
+    <!ENTITY % include-be "INCLUDE">
+    <!ENTITY % include-d "INCLUDE">
+    <!ENTITY % ogre-doc.child-list "(expansion,display-sheet*)">
+]]>
+
+
+<!-- do not include unavailable types -->
+<!ENTITY % include-b "IGNORE">
+<!ENTITY % include-c "IGNORE">
+<!ENTITY % include-d "IGNORE">
+<!ENTITY % include-e "IGNORE">
+<!ENTITY % include-be "IGNORE">
+
+
+<!--  if no document type was detected, ruin root element -->
+<!ENTITY % ogre-doc.child-list "EMPTY">
+
+
+<!--  default attributes for any document ogre-doc, base-system, character, dispay-sheet, expansion -->
+<!ENTITY % id-name "
+    id          ID      #REQUIRED
+    name        CDATA   #REQUIRED">
+<!ENTITY % doc-attrib-list "%id-name;
+    description CDATA   #IMPLIED
+    version     CDATA   #REQUIRED
+    author      CDATA   #IMPLIED
+    pub-date    CDATA   #IMPLIED">
+
+<![%include-c;[ <!ELEMENT character EMPTY> ]]>
+<![%include-d;[ <!ELEMENT display-sheet EMPTY> ]]>
+<![%include-e;[ <!ELEMENT expansion EMPTY> ]]>
+
+
+<![%include-b;[
+<!--  TODO - make optional children for custom metrics -->
+<!ELEMENT metric (#PCDATA)>
+<!ATTLIST metric system (US|SI|custom) "US">
+
+<!ELEMENT profession (#PCDATA)>
+<!ATTLIST profession
+    title CDATA #REQUIRED
+    ogre-category       (martial|magic|skilled|hybrid) #IMPLIED
+    ogre-type           (fighter|nature|tank|knowledge|inherent|acquired|performance|rogue) #IMPLIED
+    ogre-subtype        (study|bargain|divine|nature|thief) #IMPLIED
+    ogre-hybrid-type1	CDATA #IMPLIED
+    ogre-hybrid-type2   CDATA #IMPLIED >
+
+
+<!ELEMENT professions (profession*)>
+<!ATTLIST professions alt-title CDATA #IMPLIED>
+
+<!ELEMENT races EMPTY>
+
+<!ELEMENT base-stats EMPTY>
+
+<!ELEMENT base-stat-generation EMPTY>
+
+<!ELEMENT base-stat-modifiers EMPTY>
+
+<!ELEMENT string EMPTY>
+<!ATTLIST string %id-name;>
+
+<!ELEMENT integer EMPTY>
+<!ATTLIST integer %id-name;>
+
+<!ELEMENT profession-ref EMPTY>
+<!ATTLIST profession-ref %id-name;>
+
+<!ELEMENT character-model (string|integer|profession-ref)*>
+<!ATTLIST character-model %id-name;
+    type (complete|extension) "complete"
+    includes IDREFS #IMPLIED
+    universal (yes|no) "no">
+
+
+<!ELEMENT base-system
+    (metric,professions,races,base-stats,base-stat-generation,base-stat-modifiers,character-model+)>
+<!ATTLIST base-system %doc-attrib-list; >
+]]>
+
+
+<!--  root element -->
+<!ELEMENT ogre-doc %ogre-doc.child-list; >
+<!ATTLIST ogre-doc %doc-attrib-list;
+    ogre-version CDATA #FIXED "0.1" >

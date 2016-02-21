@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://ogre.fyi/ogre-0.1.xsd"
+		xmlns="http://ogre.fyi/ogre-0.1.xsd"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified">
+
+    <xs:simpleType name="fileType">
+    	<xs:restriction base="xs:string">
+    		<xs:enumeration value="ogb" />
+    		<xs:enumeration value="ogc" />
+    		<xs:enumeration value="ogd" />
+    		<xs:enumeration value="oge" />
+    		<xs:enumeration value="ogp" />    		
+    	</xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="OGREDocument">
+   		<xs:attribute name="fileType" type="fileType"/>
+    </xs:complexType>
+    
+    <xs:element name="ogreDoc" type="OGREDocument"/>
+</xs:schema>

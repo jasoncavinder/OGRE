@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<ogreDoc id="DnD5e-SRD" name="Dungeons &amp; Dragons (5e) - SRD" version="0.1" fileType="ogb"
+	xmlns="http://ogre.fyi/ogre-0.1.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ogre.fyi/ogre-0.1.xsd ogre-0.1.xsd">
+    <baseSystem id="DnD5e" name="Dungeons &amp; Dragons - 5th Edition" version="0.1" >
+    	<metric system="US" />
+    	<professions altTitle="Class">
+    	    <profession title="Barbarian">
+    	        
+    	    </profession>
+    	</professions>
+    	<races/>
+    	<baseStatGeneration/>
+    	<baseStatModifierCalc/>	
+    	<characterModel id="cm:basic" name="Basic" type="complete" universal="no">	
+    		<string id="cm:name" name="Name"/>
+    		<professionRef id="cm:profession" name="Class"/>
+    		<integer id="cm:level" name="Level"/>
+    		<string id="cm:background" name="Background"/>
+    		<string id="cm:player" name="Player Name"/>
+    		<raceRef id="cm:race" name="Race"/>
+    		<array id="cm:alignment" name="Alignment">
+    		    <enum options="Lawful Neutral Chaotic"/>
+    		    <enum options="Good Neutral Evil"/>
+    		</array>
+    	    <integer id="cm:exp" name="Experience Points"/>
+    	    <base-stats id="cm:ability-scores" name="Ability Scores">
+    	        <stat id="cm:str" name="Strength" short="Str">
+    	            <integer id="cm:str:raw"/>
+    	            <integer id="cm:str:temp"/>
+    	            <integer id="cm:str:total"/>
+    	            <integer id="cm:str:modifier"/>
+    	            <effects id="cm:str:effects">
+    	                <effect>
+    	                    <source/>
+    	                    <integer/>
+    	                    <percent/>
+    	                </effect>
+    	            </effects>
+    	        </stat>
+    	        <stat id="cm:dex" name="Dexterity" short="Dex">
+    	            <integer id="cm:dex:raw"/>
+    	            <integer id="cm:dex:temp"/>
+    	            <integer id="cm:dex:total"/>
+    	            <integer id="cm:dex:modifier"/>
+    	            <effects id="cm:dex:effects">
+    	                <effect>
+    	                    <source/>
+    	                    <integer/>
+    	                    <percent/>
+    	                </effect>
+    	            </effects>
+    	        </stat>
+    	        <stat id="cm:con" name="Constitution" short="Con">
+    	            <integer id="cm:con:raw"/>
+    	            <integer id="cm:con:temp"/>
+    	            <integer id="cm:con:total"/>
+    	            <integer id="cm:con:modifier"/>
+    	            <effects id="cm:con:effects">
+    	                <effect>
+    	                    <source/>
+    	                    <integer/>
+    	                    <percent/>
+    	                </effect>
+    	            </effects>
+    	        </stat>
+    	        <stat id="cm:int" name="Intelligence" short="Int">
+    	            <integer id="cm:int:raw"/>
+    	            <integer id="cm:int:temp"/>
+    	            <integer id="cm:int:total"/>
+    	            <integer id="cm:int:modifier"/>
+    	            <effects id="cm:int:effects">
+    	                <effect>
+    	                    <source/>
+    	                    <integer/>
+    	                    <percent/>
+    	                </effect>
+    	            </effects>
+    	        </stat>
+    	        <stat id="cm:wis" name="Wisdom" short="Wis">
+    	            <integer id="cm:wis:raw"/>
+    	            <integer id="cm:wis:temp"/>
+    	            <integer id="cm:wis:total"/>
+    	            <integer id="cm:wis:modifier"/>
+    	            <effects id="cm:wis:effects">
+    	                <effect>
+    	                    <source/>
+    	                    <integer/>
+    	                    <percent/>
+    	                </effect>
+    	            </effects>
+    	        </stat>
+    	        <stat id="cm:cha" name="Charisma" short="Cha">
+    	            <integer id="cm:cha:raw"/>
+    	            <integer id="cm:cha:temp"/>
+    	            <integer id="cm:cha:total"/>
+    	            <integer id="cm:cha:modifier"/>
+    	            <effects id="cm:cha:effects">
+    	                <effect>
+    	                    <source/>
+    	                    <integer/>
+    	                    <percent/>
+    	                </effect>
+    	            </effects>
+    	        </stat>
+    	    </base-stats>
+    	    <boolean id="cm:inspiration" name="Inspiration"/>
+    	    
+    		
+    	</characterModel>
+<!--  >
+    	<character-model id="cm:details" name="Details" type="extension" universal="no">
+    	</character-model>
+    	<character-model id="cm:spellcaster" name="Spellcaster" type="extension" universal="no">
+    	</character-model>
+    	<character-model id="cm:detailed" name="Full" type="complete" includes="cm:basic" universal="no">
+    	</character-model>
+    	<character-model id="cm:spellcaster-basic" name="Basic (Spellcaster)" type="complete" includes="cm:basic cm:spellcaster" universal="no">
+    	</character-model>
+    	<character-model id="cm:spellcaster-detailed" name="Full (Spellcaster)" type="complete" includes="cm:detailed cm:spellcaster" universal="no">
+    	</character-model>
+</!-->
+    </baseSystem>
+</ogreDoc>
